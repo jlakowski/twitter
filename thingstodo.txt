@@ -12,8 +12,9 @@ Tinker with the algorithm a little bit
 	-See if I can get multipliers working well
 	-add words to the list
 	-See if I can eliminate false positives
-	-Bayesian machine learning ?? I know a guy has done it.
-
+	-Bayesian machine learning ?? I know a guy has done it. (to try and estimate how right we are..)
+	-more than just a one dimensional rating system(+/-)
+	- maybe a 2d or three d. This may mean jumping into linguistics a bit
 Other Things
 	-Try and figure out a way to get a ring buffer going for realtime analysis of tweets
 	-Analyze tweets from people who talk about things and then look at who they follow
@@ -24,3 +25,10 @@ Create a chron job which can run the tweet harvester in spurts
 
 
 just a note: I'm getting about 10,000 english language tweets in about 0.5 hours which means about 20,000 an hour
+
+the child actors of modern family have it weird. pretending to be normal kids even though their life does not remotely
+resemeble a typical american kid
+
+feel like I'm leveling up a bit in the programming world;
+	databases, dictionaries, ring buffers this is a good projcet
+	check out the sigmusic page to see how they handled the emotion parsing
