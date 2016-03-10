@@ -15,7 +15,6 @@
 :-)	3
 :-(	-3
 :'(	-4
-😚  3
 abandon	-2
 abandoned	-2
 abandons	-2
@@ -286,6 +285,8 @@ better	2
 bias	-1
 biased	-2
 big	1
+bigotry	-2
+bigot	-3
 bitch	-5
 bitches	-5
 bitter	-2
@@ -742,7 +743,7 @@ disparage	-2
 disparaged	-2
 disparages	-2
 disparaging	-2
-dispicable  -2
+dispicable 	-2
 displeased	-2
 dispute	-2
 disputed	-2
@@ -1011,7 +1012,7 @@ fiasco	-3
 fidgety	-2
 fight	-1
 fine	2
-fire	-2
+fire	2
 fired	-2
 firing	-2
 fit	1

@@ -10,11 +10,16 @@ Make an analytics program which interprets all these tweets (too bad we don't ha
 
 Tinker with the algorithm a little bit
 	-See if I can get multipliers working well
+	-exclamation points what to dooo
 	-add words to the list
 	-See if I can eliminate false positives
 	-Bayesian machine learning ?? I know a guy has done it. (to try and estimate how right we are..)
 	-more than just a one dimensional rating system(+/-)
 	- maybe a 2d or three d. This may mean jumping into linguistics a bit
+	
+	-Changed fire from -2 to +2. 
+	-MAKE SURE TO USE A TAB TO SEPARATE WORD FROM SENTIMENT. IT IS HARD TO TELL IN ECLIPSE@@@
+	-maybe make a separate list of adjectives?
 Other Things
 	-Try and figure out a way to get a ring buffer going for realtime analysis of tweets
 	-Analyze tweets from people who talk about things and then look at who they follow
