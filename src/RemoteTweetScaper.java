@@ -103,9 +103,9 @@ public class RemoteTweetScaper {
         System.out.println("Opened tweets database successfully!");
         */
 
-        String url = "jdbc:mysql://192.168.1.75:3306/testdb";
-        String user = "testuser";
-        String password = "test623";
+        String url = "jdbc:mysql://192.168.1.75:3306/tweetwarehouse";
+        String user = "scrapeuser";
+        String password = "scrape";
         
         try {
         	c = DriverManager.getConnection(url, user, password);
@@ -157,17 +157,17 @@ public class RemoteTweetScaper {
 						String time = (String)json.get("created_at");
 						//int tsms = (Integer)json.get("timestamp_ms"); This still doesn't work, I don't know why
 						
-						//long tweetid = (Long)json.get("id");
+						long tweetid = (Long)json.get("id");
 						JSONObject user = (JSONObject)json.get("user");
-						//long uid = (Long)user.get("id");
+						long uid = (Long)user.get("id");
 						String handle = (String)user.get("screen_name"); // get the handle
 						int sentscore = scoreTweet(text);
 						System.out.println(time + "\t" + sentscore + "\t@" + handle +"\t" +text);
 												
 						try{
 							Statement stmt = c.createStatement();
-							String sql = "INSERT INTO tbl3(time, sentscore, handle, text) " + 
-									"VALUES ('" + time +"','" + sentscore +"','@" + handle +"','" + text.replaceAll("'", "''")+"')" ;
+							String sql = "INSERT INTO tweets(msgid, time, uid, handle, text) " + 
+									"VALUES ('" + tweetid +"','" + time  +"','"+ uid  + "','@" + handle +"','" + text.replaceAll("'", "''")+"')" ;
 							//System.out.println("Score: " + sentscore +"\t"+ text);
 							stmt.executeUpdate(sql);
 							stmt.close();
