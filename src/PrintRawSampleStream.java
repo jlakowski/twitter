@@ -62,16 +62,17 @@ public class PrintRawSampleStream {
                 new BufferedReader(fileReader);
 
             while((line = bufferedReader.readLine()) != null) {
-                //line = line.replaceAll("\\s"," ");
+                //line = line.replaceAll("\\s","\t");
             	String[] entry = line.split("\t");
             	//this is throwing an error for multipliers
             	//Also it can't handle two word phrases
             	if(entry[1].contains("*")){
+            		//System.out.println(entry[0]);
             		emomultdic.put(entry[0], 2);
             	}else{
             		emodic.put(entry[0], Integer.parseInt(entry[entry.length -1]));
             	}
-            	//System.out.println("Added " + entry[0]);
+            	System.out.println("Added " + entry[0]);
             	counter ++;
             }   
 
@@ -102,17 +103,25 @@ public class PrintRawSampleStream {
 	public static int scoreTweet(String statustext){
 		int score = 0;
 		String[] words = statustext.split(" ");
+		short adjlast = 0;
+		int multiplier = 0;
 		for(int i=0; i< words.length; i++){
+			//the multiplier isn't working yet
+			if(emomultdic.containsKey(words[i]))
+				multiplier = emomultdic.get(words[i]);
+				adjlast = 1;
+				
 			if(emodic.containsKey(words[i])){
-				score = score + emodic.get(words[i]);
+				score = score + emodic.get(words[i])*(1 + multiplier);
+				multiplier = 0;
 			}
+			
 		}
 		return score;
 	}
 	
     public static void main(String[] args) throws TwitterException {
     	startup();
-    	final JSONParser parser = new JSONParser();
     	
     	TwitterStream twitterStream = new TwitterStreamFactory().getInstance();
         RawStreamListener listener = new RawStreamListener() {
@@ -130,9 +139,10 @@ public class PrintRawSampleStream {
 						
 						String time = (String)json.get("created_at");
 						//int tsms = (Integer)json.get("timestamp_ms"); This still doesn't work, I don't know why
-						long tweetid = (Long)json.get("id");
+						
+						//long tweetid = (Long)json.get("id");
 						JSONObject user = (JSONObject)json.get("user");
-						long uid = (Long)user.get("id");
+						//long uid = (Long)user.get("id");
 						String handle = (String)user.get("screen_name"); // get the handle
 						int sentscore = scoreTweet(text);
 						System.out.println(time + "\t" + sentscore + "\t@" + handle +"\t" +text);
