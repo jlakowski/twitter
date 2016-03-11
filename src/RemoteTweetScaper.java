@@ -161,14 +161,16 @@ public class RemoteTweetScaper {
 						JSONObject user = (JSONObject)json.get("user");
 						long uid = (Long)user.get("id");
 						String handle = (String)user.get("screen_name"); // get the handle
-						int sentscore = scoreTweet(text);
-						System.out.println(time + "\t" + sentscore + "\t@" + handle +"\t" +text);
-												
+						System.out.println(time + "\t@" + handle +"\t" +text);
+						String cleantext = text.replace("'", "''");
+						cleantext = cleantext.replace("/", " ");
+						//cleantext = cleantext.replace("\\", " ");
+						
 						try{
 							Statement stmt = c.createStatement();
-							String sql = "INSERT INTO tweets(msgid, time, uid, handle, text) " + 
-									"VALUES ('" + tweetid +"','" + time  +"','"+ uid  + "','@" + handle +"','" + text.replaceAll("'", "''")+"')" ;
-							//System.out.println("Score: " + sentscore +"\t"+ text);
+							String sql = "INSERT INTO tweets(msgid, time, uid, uname, text) " + 
+									"VALUES ('" + tweetid +"','" + time  +"','"+ uid  + "','@" + handle +"','" + cleantext +"')" ;
+
 							stmt.executeUpdate(sql);
 							stmt.close();
 							//c.commit();
